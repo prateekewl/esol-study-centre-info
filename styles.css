@@ -19,6 +19,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 5.5rem;
 }
 
 body {
@@ -32,6 +33,11 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+a:focus-visible {
+  outline: 3px solid #f4a7ae;
+  outline-offset: 4px;
 }
 
 .site-header {
@@ -57,18 +63,12 @@ a {
 }
 
 .brand-mark {
-  display: grid;
-  place-items: center;
+  display: block;
   flex: 0 0 auto;
   width: 2.8rem;
   height: 2.8rem;
   border-radius: 50%;
-  color: white;
-  background: var(--blue);
-  box-shadow: inset -0.35rem 0 0 var(--red);
-  font-size: 1.8rem;
-  font-style: italic;
-  font-weight: 900;
+  object-fit: cover;
 }
 
 .brand strong,
@@ -122,42 +122,68 @@ nav a:hover::after {
   transform: scaleX(1);
 }
 
+.nav-contact {
+  min-height: 2.6rem;
+  padding: 0.6rem 0.9rem;
+  border: 1px solid var(--blue);
+  border-radius: 0.3rem;
+  color: var(--blue);
+}
+
+.nav-contact::after {
+  display: none;
+}
+
+.nav-contact:hover {
+  background: var(--blue);
+  color: white;
+}
+
+.mobile-label {
+  display: none;
+}
+
 .hero {
   position: relative;
   isolation: isolate;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(19rem, 25rem);
-  align-items: end;
+  align-items: center;
   gap: clamp(2rem, 6vw, 6.5rem);
-  min-height: min(780px, calc(100vh - 4.75rem));
-  padding: clamp(5rem, 10vw, 8rem) var(--page-pad) clamp(4.5rem, 8vw, 6.5rem);
+  min-height: min(690px, calc(100vh - 4.75rem));
+  padding: clamp(4.5rem, 8vw, 7rem) var(--page-pad);
   overflow: hidden;
   color: white;
-  background: url("assets/esol-flyer.png") right 20% center / cover no-repeat;
+  background-color: var(--ink);
 }
 
 .hero::before {
   content: "";
   position: absolute;
-  inset: 0;
-  z-index: -2;
-  background: rgba(3, 24, 53, 0.88);
+  top: 0;
+  right: var(--page-pad);
+  width: 5.5rem;
+  height: 0.35rem;
+  z-index: -1;
+  background: var(--red);
 }
 
 .hero::after {
-  content: "";
+  content: "UK";
   position: absolute;
   z-index: -1;
-  right: clamp(1.5rem, 9vw, 9rem);
-  bottom: -7rem;
-  width: clamp(11rem, 24vw, 23rem);
-  height: 19rem;
-  border: 1.5rem solid rgba(255, 255, 255, 0.08);
-  border-bottom: 0;
-  transform: skewX(-10deg);
+  right: -0.04em;
+  bottom: -0.2em;
+  color: rgba(255, 255, 255, 0.035);
+  font-size: clamp(16rem, 33vw, 34rem);
+  font-weight: 950;
+  line-height: 0.8;
+  pointer-events: none;
 }
 
 .hero-copy {
+  position: relative;
+  z-index: 1;
   max-width: 54rem;
 }
 
@@ -193,10 +219,10 @@ p {
 }
 
 h1 {
-  max-width: 10ch;
+  max-width: 11ch;
   margin-bottom: 1.4rem;
-  font-size: clamp(3.4rem, 8.8vw, 8rem);
-  line-height: 0.88;
+  font-size: clamp(3.4rem, 7vw, 6.5rem);
+  line-height: 0.92;
   letter-spacing: 0;
 }
 
@@ -270,9 +296,11 @@ h3 {
 }
 
 .quick-panel {
+  position: relative;
+  z-index: 1;
   align-self: end;
   padding: 1.6rem;
-  border-top: 0.28rem solid var(--red);
+  border-top: 0.3rem solid var(--red);
   border-radius: 0.35rem;
   background: rgba(255, 255, 255, 0.96);
   box-shadow: var(--shadow);
@@ -318,6 +346,14 @@ h3 {
   font-weight: 900;
 }
 
+.panel-location {
+  display: block;
+  margin-top: 0.3rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
 .proof-strip {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -352,7 +388,6 @@ h3 {
 
 .section,
 .teacher,
-.flyer-section,
 .contact {
   padding: clamp(4.25rem, 9vw, 7.5rem) var(--page-pad);
 }
@@ -379,6 +414,51 @@ h3 {
   gap: 1px;
   padding: 0 var(--page-pad) clamp(4.25rem, 9vw, 7.5rem);
   background: white;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1.28fr);
+  gap: clamp(2rem, 7vw, 7rem);
+  padding: clamp(4.25rem, 9vw, 7.5rem) var(--page-pad);
+  background: #edf2f7;
+}
+
+.steps-heading {
+  max-width: 32rem;
+}
+
+.steps-list {
+  display: grid;
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  border-top: 1px solid #cbd5e0;
+}
+
+.steps-list li {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(10rem, 0.75fr) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: baseline;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid #cbd5e0;
+}
+
+.steps-list li > span {
+  color: var(--red);
+  font-size: 0.75rem;
+  font-weight: 900;
+}
+
+.steps-list strong {
+  font-size: 1.08rem;
+}
+
+.steps-list p {
+  margin: 0;
+  color: var(--muted);
 }
 
 .course-card {
@@ -522,40 +602,6 @@ h3 {
   font-size: 0.92rem;
 }
 
-.flyer-section {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) minmax(18rem, 30rem);
-  gap: clamp(2rem, 8vw, 8rem);
-  align-items: center;
-  background: #edf2f7;
-}
-
-.flyer-section p {
-  max-width: 40rem;
-  color: var(--muted);
-  font-size: 1.08rem;
-}
-
-.flyer-frame {
-  display: block;
-  border: 0.5rem solid white;
-  background: white;
-  box-shadow: var(--shadow);
-  overflow: hidden;
-  transform: rotate(1.3deg);
-  transition: transform 180ms ease;
-}
-
-.flyer-frame:hover {
-  transform: rotate(0);
-}
-
-.flyer-frame img {
-  display: block;
-  width: 100%;
-  height: auto;
-}
-
 .contact {
   display: grid;
   grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
@@ -571,7 +617,7 @@ h3 {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: 1fr;
   gap: 1px;
   align-content: start;
   background: var(--line);
@@ -579,7 +625,7 @@ h3 {
 }
 
 .contact-card {
-  min-height: 9.5rem;
+  min-height: 7.5rem;
   padding: 1.4rem;
   background: #fbfcfe;
   transition: background 160ms ease;
@@ -606,6 +652,54 @@ h3 {
   color: var(--blue);
   font-size: clamp(0.95rem, 1.45vw, 1.18rem);
   overflow-wrap: anywhere;
+}
+
+.contact-card small {
+  display: block;
+  margin-top: 0.7rem;
+  color: var(--muted);
+  font-size: 0.82rem;
+  font-weight: 750;
+}
+
+.location-card {
+  position: relative;
+  border-left: 0.22rem solid var(--red);
+}
+
+.map-panel {
+  grid-column: 1 / -1;
+  border: 1px solid var(--line);
+  background: #eef2f6;
+}
+
+.map-panel iframe {
+  display: block;
+  width: 100%;
+  height: clamp(18rem, 34vw, 28rem);
+  border: 0;
+  filter: saturate(0.82) contrast(1.02);
+}
+
+.map-caption {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.2rem;
+  background: white;
+}
+
+.map-caption span {
+  color: var(--muted);
+  font-size: 0.88rem;
+  font-weight: 750;
+}
+
+.map-caption a {
+  color: var(--blue);
+  font-size: 0.88rem;
+  font-weight: 900;
 }
 
 footer {
@@ -649,8 +743,8 @@ footer p {
 
   .hero,
   .intro,
+  .steps,
   .teacher,
-  .flyer-section,
   .contact {
     grid-template-columns: 1fr;
   }
@@ -667,13 +761,11 @@ footer p {
     grid-template-columns: 1fr 1fr;
   }
 
-  .teacher,
-  .flyer-section {
+  .teacher {
     align-items: start;
   }
 
-  .trust-box,
-  .flyer-frame {
+  .trust-box {
     max-width: 32rem;
   }
 }
@@ -701,22 +793,43 @@ footer p {
     gap: 0.9rem;
   }
 
-  nav a {
+  nav > a:not(.nav-contact) {
+    display: none;
+  }
+
+  .nav-contact {
+    min-height: auto;
+    padding: 0.45rem 0.75rem;
     font-size: 0.78rem;
   }
 
-  nav a:nth-child(2) {
+  .nav-contact:hover {
+    background: var(--blue);
+    color: white;
+  }
+
+  .desktop-label {
     display: none;
+  }
+
+  .mobile-label {
+    display: inline;
   }
 
   .hero {
     padding-top: 4rem;
     padding-bottom: 4rem;
-    background-position: 68% center;
   }
 
   .hero::before {
-    background: rgba(3, 24, 53, 0.92);
+    right: var(--page-pad);
+    width: 3.5rem;
+  }
+
+  .hero::after {
+    right: -0.08em;
+    bottom: 0.1em;
+    font-size: 17rem;
   }
 
   h1 {
@@ -754,16 +867,25 @@ footer p {
     grid-template-columns: 1fr;
   }
 
+  .steps-list li {
+    grid-template-columns: 2.5rem minmax(0, 1fr);
+  }
+
+  .steps-list p {
+    grid-column: 2;
+  }
+
   .course-card {
     min-height: 18rem;
   }
 
-  .flyer-frame {
-    transform: none;
-  }
-
   .contact-card {
     min-height: 7.5rem;
+  }
+
+  .map-caption {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   footer {
