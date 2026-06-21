@@ -617,7 +617,7 @@ h3 {
 
 .contact-grid {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 1px;
   align-content: start;
   background: var(--line);
@@ -625,7 +625,7 @@ h3 {
 }
 
 .contact-card {
-  min-height: 7.5rem;
+  min-height: 8.5rem;
   padding: 1.4rem;
   background: #fbfcfe;
   transition: background 160ms ease;
@@ -669,14 +669,14 @@ h3 {
 
 .hours-card dl {
   display: grid;
-  gap: 0.65rem;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1.25rem;
   margin: 0;
 }
 
 .hours-card dl > div {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
+  display: grid;
+  gap: 0.25rem;
 }
 
 .hours-card dt {
@@ -688,7 +688,10 @@ h3 {
   margin: 0;
   color: var(--blue);
   font-weight: 900;
-  text-align: right;
+}
+
+.hours-card {
+  grid-column: 1 / -1;
 }
 
 .map-panel {
@@ -889,6 +892,15 @@ footer p {
   .courses,
   .contact-grid {
     grid-template-columns: 1fr;
+  }
+
+  .hours-card {
+    grid-column: auto;
+  }
+
+  .hours-card dl {
+    grid-template-columns: 1fr;
+    gap: 0.8rem;
   }
 
   .steps-list li {
