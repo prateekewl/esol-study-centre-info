@@ -667,6 +667,30 @@ h3 {
   border-left: 0.22rem solid var(--red);
 }
 
+.hours-card dl {
+  display: grid;
+  gap: 0.65rem;
+  margin: 0;
+}
+
+.hours-card dl > div {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.hours-card dt {
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.hours-card dd {
+  margin: 0;
+  color: var(--blue);
+  font-weight: 900;
+  text-align: right;
+}
+
 .map-panel {
   grid-column: 1 / -1;
   border: 1px solid var(--line);
